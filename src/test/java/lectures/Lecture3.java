@@ -9,15 +9,29 @@ import org.junit.Test;
 
 public class Lecture3 {
 
-  @Test
-  public void min() throws Exception {
-    final List<Integer> numbers = ImmutableList.of(1, 2, 3, 100, 23, 93, 99);
+	@Test
+	public void min() throws Exception {
+		final List<Integer> numbers = ImmutableList.of(1, 2, 3, 100, 23, 93,
+				99);
 
-  }
+		// Integer min = numbers.stream().min((n1, n2) -> n1 > n2 ? 1 :
+		// -1).get();
+		Integer min = numbers.stream().min(Comparator.naturalOrder()).get();
 
-  @Test
-  public void max() throws Exception {
-    final List<Integer> numbers = ImmutableList.of(1, 2, 3, 100, 23, 93, 99);
+		assertThat(min).isEqualTo(1);
 
-  }
+		System.out.println(min);
+	}
+
+	@Test
+	public void max() throws Exception {
+		final List<Integer> numbers = ImmutableList.of(1, 2, 3, 100, 23, 93,
+				99);
+
+		Integer max = numbers.stream().max(Comparator.naturalOrder()).get();
+
+		assertThat(max).isEqualTo(100);
+
+		System.out.println(max);
+	}
 }
